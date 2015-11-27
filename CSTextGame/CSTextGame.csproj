@@ -35,6 +35,18 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="Command.cs" />
+    <Compile Include="Commands\CommandTest.cs" />
+    <Compile Include="Objects\Item.cs" />
+    <Compile Include="Objects\Location.cs" />
+    <Compile Include="Objects\Exit.cs" />
+    <Compile Include="Objects\ExitDirection.cs" />
+    <Compile Include="Commands\CommandMove.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Commands\" />
+    <Folder Include="Objects\" />
+  </ItemGroup>
 </Project>
