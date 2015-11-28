@@ -1,42 +1,41 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using CSTextGame.Commands;
 
 namespace CSTextGame
 {
 	public abstract class Command
 	{
-		private static List<Command> commands = new List<Command>();
+		public static List<Command> Commands = new List<Command>();
 
 		static Command()
 		{
+			InitializeCommands();
 		}
 
-		private static void InitializeCommands()
+		static void InitializeCommands()
 		{
-			commands.Add(new Command()
-				{
-				
-				});
+			Commands.Add(new CommandTest());
+			Commands.Add(new CommandMove());
 		}
 
-		public static string ProcessCommand(string input, Game game)
+		public static string ProcessCommand(string[] input, Game game)
 		{
-			foreach(Command command in commands)
+			foreach(Command command in Commands)
 			{
 				foreach(string alias in command.Aliases())
 				{
-					if(alias.Equals(input, StringComparison.CurrentCultureIgnoreCase))
+					if(alias.Equals(input[0], StringComparison.CurrentCultureIgnoreCase))
+					{
+						return command.Action(input, game);
+					}
 				}
 			}
-		}
-
-		public Command()
-		{
+			return "Unknown command \"" + input[0] + "\"";
 		}
 
 		public abstract string[] Aliases();
 
-		public abstract string Action(Game game);
+		public abstract string Action(string[] input, Game game);
 	}
 }

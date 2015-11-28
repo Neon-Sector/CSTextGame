@@ -1,4 +1,5 @@
 ﻿using System;
+using CSTextGame.Objects;
 
 namespace CSTextGame.Commands
 {
@@ -6,7 +7,14 @@ namespace CSTextGame.Commands
 	{
 		public override string[] Aliases()
 		{
-			return "move";
+			string[] aliases = { "move", "go", "walk", "run" };
+			string[] directions = 
+			return 
+		}
+
+		public override string Action(string[] input, Game game)
+		{
+			
 		}
 	}
 }

@@ -6,10 +6,10 @@ namespace CSTextGame.Commands
 	{
 		public override string[] Aliases()
 		{
-			return "test";
+			return new string[] { "test" };
 		}
 
-		public override string Action(Game game)
+		public override string Action(string[] input, Game game)
 		{
 			return "hello, world!";
 		}

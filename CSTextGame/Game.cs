@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Collections.Generic;
+using CSTextGame.Objects;
 
 namespace CSTextGame
 {
@@ -9,8 +10,8 @@ namespace CSTextGame
 		Thread _thread;
 		bool _running;
 
-		//private List<Item> _inventory = new List<Item>();
-		//private Location _currentLocation;
+		private List<Item> _inventory = new List<Item>();
+		private Location _currentLocation;
 
 		public Game()
 		{
@@ -20,18 +21,29 @@ namespace CSTextGame
 		{
 			while(_running)
 			{
-				string buffer = Command.ProcessCommand(Console.In.ReadLine(), this);
+				Console.Out.Write("> ");
+				string input = Console.In.ReadLine();
+				string buffer = Command.ProcessCommand(input.Split(' '), this);
+				Console.Out.WriteLine(buffer);
 			}
 		}
 
 		public void Start()
 		{
+			if(_running)
+				return;
+			_running = true;
 			_thread = new Thread(Run);
+			_thread.Start();
 		}
 
 		public void Stop()
 		{
-			
+			if(!_running)
+				return;
+			_running = false;
+			_thread.Abort();
+			_thread.Join();
 		}
 	}
 }
